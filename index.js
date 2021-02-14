@@ -27,6 +27,11 @@ io.on("connection", function (socket) {
     console.log("moveRight", data);
     fn(data);
   });
+
+  socket.on("moveLeft", (data, fn) => {
+    console.log("moveLeft", data);
+    fn(data);
+  });
 });
 
 server.listen(3000);
