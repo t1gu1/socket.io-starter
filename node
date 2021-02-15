@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
+IMAGE="YOURDOCKERIMAGENAME/node:12"
+
+#docker pull ${IMAGE} &> /dev/null
+docker run --rm -u $(id -u ${USER}):$(id -g ${USER}) \
+    --entrypoint npm \
+    --network host \
+    -v ~/.aws:/home/node/.aws \
+    -v ${DIR}:/src \
+    -v ${DIR}/../../.npm \
+    -w /src \
+    -it ${IMAGE} "$@"
